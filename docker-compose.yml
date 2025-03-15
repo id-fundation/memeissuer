@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: next_app
+    expose:
+      - "3000"
+
+  caddy:
+    build: ./caddy
+    container_name: caddy_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - app
